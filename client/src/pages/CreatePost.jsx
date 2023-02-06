@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FormField, Loader } from "../components";
 import { preview } from "../assets";
 import { getRandomPrompt } from "../utils/index";
+import { toast } from "react-toastify";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -32,12 +33,12 @@ const CreatePost = () => {
 
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (error) {
-        alert(error);
+        toast.error(error);
       } finally {
         setGeneratingImg(false);
       }
     } else {
-      alert("Please enter a prompt");
+      toast.error("Please enter a prompt");
     }
   };
 
@@ -55,16 +56,16 @@ const CreatePost = () => {
           },
           body: JSON.stringify(form),
         });
-
         await response.json();
         navigate("/");
       } catch (error) {
-        alert(error);
+        toast.error(error);
       } finally {
+        toast.success("Success sharing");
         setLoading(false);
       }
-    }else{
-      alert("Please enter a prompt");
+    } else {
+      toast.error("Please enter a prompt");
     }
   };
 

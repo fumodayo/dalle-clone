@@ -4,9 +4,24 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   return (
     <BrowserRouter>
+      {/*config toastify*/}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+      />
+      {/*config toastify*/}
+      
       <header className="w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
         <Link to="/">
           <img src={logo} alt="logo" className="w-28 object-contain" />
@@ -26,7 +41,6 @@ const App = () => {
           <Route path="/create-post" element={<CreatePost />} />
         </Routes>
       </main>
-      
     </BrowserRouter>
   );
 };

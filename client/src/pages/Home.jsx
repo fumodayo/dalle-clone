@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { Card, FormField, Loader } from "../components";
 
 const RenderCards = ({ data, title }) => {
@@ -37,7 +38,7 @@ const Home = () => {
           setAllPosts(result.data.reverse());
         }
       } catch (error) {
-        alert(error);
+        toast.error(error);
       } finally {
         setLoading(false);
       }
